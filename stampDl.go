@@ -1,14 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"github.com/PuerkitoBio/goquery"
-	"strings"
 	"flag"
-	"os"
-	"net/http"
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"os"
 	"strconv"
+	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 	"github.com/disintegration/imaging"
 )
 
@@ -20,7 +21,7 @@ func GetImageURL(url string) {
 	if err := os.Mkdir(dirName, 0755); err != nil {
 		fmt.Println(err)
 	}
-	if err := os.Mkdir(dirName + "/stamp", 0755); err != nil {
+	if err := os.Mkdir(dirName+"/stamp", 0755); err != nil {
 		fmt.Println(err)
 	}
 
@@ -32,7 +33,7 @@ func GetImageURL(url string) {
 		response, err := http.Get(imgUrl)
 		body, err := ioutil.ReadAll(response.Body)
 		filename := dirName + "/" + strconv.Itoa(indexNum) + ".png"
-		file, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY,0644)
+		file, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY, 0644)
 
 		if err != nil {
 			fmt.Println(err)
@@ -52,7 +53,7 @@ func GetImageURL(url string) {
 
 		fillImg := imaging.Fill(src, 128, 128, imaging.Center, imaging.Lanczos)
 
-		if err := imaging.Save(fillImg, dirName + "/stamp/" + strconv.Itoa(indexNum) + ".png"); err != nil {
+		if err := imaging.Save(fillImg, dirName+"/stamp/"+strconv.Itoa(indexNum)+".png"); err != nil {
 			fmt.Println(err)
 		}
 		indexNum++
