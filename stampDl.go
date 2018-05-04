@@ -13,7 +13,7 @@ import (
 	"github.com/disintegration/imaging"
 )
 
-func GetImageURL(url string) {
+func GetImageAndResizeAndSave(url string) {
 	doc, _ := goquery.NewDocument(url)
 
 	dirName := strings.Split(doc.Find("title").Text(), " -")[0]
@@ -67,5 +67,5 @@ func main() {
 		fmt.Println("please input Stamp-URL")
 		return
 	}
-	GetImageURL(url)
+	GetImageAndResizeAndSave(url)
 }
