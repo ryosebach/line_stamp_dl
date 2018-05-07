@@ -16,7 +16,11 @@ import (
 func GetImageAndResizeAndSave(url string) {
 	doc, _ := goquery.NewDocument(url)
 
-	dirName := strings.Split(doc.Find("title").Text(), " -")[0]
+	if _, err := os.Stat("images"); err != nil {
+		os.Mkdir("images", 0755)
+	}
+
+	dirName := "images/" + strings.Split(doc.Find("title").Text(), " -")[0]
 	fmt.Println(dirName)
 	if err := os.Mkdir(dirName, 0755); err != nil {
 		fmt.Println(err)
