@@ -14,7 +14,11 @@ import (
 )
 
 func GetImageAndResizeAndSave(url string) {
-	doc, _ := goquery.NewDocument(url)
+	doc, err := goquery.NewDocument(url)
+	if err != nil {
+		fmt.Println("Not valid url! Please confirm url")
+		return
+	}
 
 	if _, err := os.Stat("images"); err != nil {
 		os.Mkdir("images", 0755)
