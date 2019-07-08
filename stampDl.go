@@ -34,7 +34,7 @@ func GetImageAndResizeAndSave(url string) {
 	}
 
 	var indexNum int = 0
-	doc.Find(".mdCMN09Image").Each(func(_ int, s *goquery.Selection) {
+	doc.Find(".mdCMN09Image.FnPreview").Each(func(_ int, s *goquery.Selection) {
 		elem, _ := s.Attr("style")
 		imgUrl := strings.Split(strings.Split(elem, "url(")[1], ";compress")[0]
 
